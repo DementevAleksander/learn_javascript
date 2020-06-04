@@ -123,6 +123,7 @@ switch (num) {
 // }
 // while (num <= 55);
 
+/*
 let num = 50;
 for (let i = 1; i < 5; i++) {
      console.log(num);
@@ -137,6 +138,73 @@ for (let i = 1; i < 100; i++) {
     }
      console.log(i);
 } 
+*/
+
+
+// ----------------------- Функции ------------------------------------------------ //
+/*
+// function declaration.
+//function имя (аргумент) {}. 
+let num = 10;
+function showFirstMessage(text) {
+    console.log(text);
+    num = 20;
+    console.log(num);
+}
+//вызов фукнции
+showFirstMessage('Привет, Александр Андреевич! Мы вам очень рады!');
+console.log(num);
+
+function calc(a, b) {
+    return (a + b);
+}
+console.log(calc(10, 1));
+console.log(calc(100, 1));
+console.log(calc(1000, 1));
+
+function ret() {
+    let num = 50;
+    // какая-то логика программы
+    return num;
+}
+const anotherNum = ret();
+console.log(anotherNum);
+
+//function expressio.
+const logger = function () {
+    console.log("ПриветИК!");
+};
+logger();
+
+// Стрелочные функции
+const calculate = (a, b) => {
+    return a + b;
+};
+*/
+
+// ----------------------- Методы и свойства строк и чисел ------------------------------------------------ //
+//Строки
+const str = "коЛЛичество СИМВолов";
+//const arr = [1, 2, 7];
+//console.log(str.length); //подсчёт количества символов
+console.log(str.toUpperCase());
+console.log(str.toLowerCase());
+
+const food = "Вкусный бутербродище!";
+console.log(food.indexOf("терб"));
+
+const logg = "Привет, дружище!";
+console.log(logg.slice(8, 17));
+console.log(logg.substring(8, 17));
+console.log(logg.substr(8, 8));
+
+//Числа
+const numb = 15.499999999999999999999999999999999999999999999999999999999999999;
+console.log(Math.round(numb));
+
+const weight = "145.3523523px";
+console.log(parseInt(weight));
+console.log(parseFloat(weight));
 
 
 
