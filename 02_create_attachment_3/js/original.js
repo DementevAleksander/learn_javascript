@@ -35,6 +35,7 @@ let personalMovieDB = {
     privat: false
 };
 
+/* 
 function rememberMyFilms() {
     for (let i = 0; i < 2; i++) {
         const a = prompt('Один из последних просмотренных фильмов?', ''),
@@ -70,3 +71,28 @@ function detectPersonalLever() {
 detectPersonalLever();
 
 console.log(personalMovieDB);
+*/
+
+
+function showMyDB(hidden) {
+   if (!hidden) {
+    console.log(personalMovieDB);
+   }
+}
+showMyDB(personalMovieDB.privat);
+
+
+// function writeYourGenres() {
+//     for (let i = 1; i < 4; i++) {
+//         const janr = prompt(`Ваш любимый жанр под номером ${i}`);
+//         personalMovieDB.genres[i - 1] = janr;
+//     }
+// }
+// writeYourGenres();
+
+function writeYourGenres() {
+    for (let i = 1; i < 4; i++) {
+        personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+    }
+}
+writeYourGenres();
