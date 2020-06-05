@@ -183,6 +183,7 @@ const calculate = (a, b) => {
 */
 
 // ----------------------- Методы и свойства строк и чисел ------------------------------------------------ //
+/*
 //Строки
 const str = "коЛЛичество СИМВолов";
 //const arr = [1, 2, 7];
@@ -205,6 +206,7 @@ console.log(Math.round(numb));
 const weight = "145.3523523px";
 console.log(parseInt(weight));
 console.log(parseFloat(weight));
+*/
 
 
 // ----------------------- Callback-Функция ------------------------------------------------ //
@@ -234,7 +236,7 @@ learnJS('JavaScript', done);
 */
 
 // ----------------------- Объекты, деструктуризация объектов ------------------------------------- //
-
+/*
 const options = {
     name: 'text',
     width: 1024,
@@ -269,6 +271,37 @@ for (let key in options) {
     }
 }
 console.log(counter);
+*/
+
+// ----------------------- Массивы и псевдомассивы ------------------------------------- //
+
+const arr = [1, 2, 3, 6, 8];
+// arr.pop(); //удаляет последний элемент
+// arr.push(10); //добавляет элемент
+// console.log(arr);
+// console.log(arr.length);
+
+//перебор элементов массива, цикл работет до тех пор, пока не закончатся элементы массива.
+// for (let i = 0; i < arr.length; i++) {
+//     console.log(arr[i]);   
+// }
+
+//другой вариант
+// for (let value of arr) {
+//     console.log(value);
+// }
+
+//3й вариант. item - элемент, который мы перебираем, i - номер по порядку, arr - ссылка на массив, который перебираем.
+arr.forEach(function (item, i, arr) {
+    console.log(`${i}: ${item} внутри массива ${arr}`);
+});
 
 
+const str = prompt("Вопрос?", "");
+const products = str.split(", "); //указывается разделитель через который указывается перечисление
+products.sort(compareName); //сортировка в алфавитном порядке
+console.log(products.join("; "));
 
+function compareName(a, b) { //callback-функция для корректной сортировки числел
+    return a - b;
+}
