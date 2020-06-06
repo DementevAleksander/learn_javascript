@@ -274,7 +274,7 @@ console.log(counter);
 */
 
 // ----------------------- Массивы и псевдомассивы ------------------------------------- //
-
+/*
 const arr = [1, 2, 3, 6, 8];
 // arr.pop(); //удаляет последний элемент
 // arr.push(10); //добавляет элемент
@@ -305,3 +305,144 @@ console.log(products.join("; "));
 function compareName(a, b) { //callback-функция для корректной сортировки числел
     return a - b;
 }
+*/
+
+// ----------------------- Передача по ссылке или по значению ------------------------------------- //
+/*
+let a = 5,
+    b = a;
+
+b = b + 5;
+console.log(b);
+console.log(a);
+
+// Тот же вариант с объектом
+const obj = {
+    a: 5,
+    b: 10
+};
+const copy = obj; //Объект не копируется, а передаётся ссылка на объек, при изменении copy меняется obj
+copy.a = 11;
+console.log(copy);
+console.log(obj);
+*/
+
+//Создание копии объекта
+function copy(mainObject) {
+    let objCopy = {};
+    let key;
+    for (key in mainObject) {
+        objCopy[key] = mainObject[key];
+    }
+    return objCopy;
+}
+
+const numbers = {
+    a: 2,
+    b: 5,
+    c: {
+        x: 7,
+        y: 4
+    }
+};
+
+const newNumbers = copy(numbers);
+newNumbers.a = 10;
+console.log(newNumbers);
+console.log(numbers);
+
+//Соединение объектов
+const add = {
+    d: 17,
+    e: 20
+};
+console.log(Object.assign(newNumbers, add)); //numbers - указываем объект, в который помещаем, add - который помещаем
+
+const clone = Object.assign({}, add);
+
+clone.d = 20;
+console.log(add);
+console.log(clone);
+
+//Создание копии массива
+const oldArray = ['a', 'b', 'c'];
+const newArray = oldArray.slice();
+newArray[2] = 'qwerty';
+console.log(newArray);
+console.log(oldArray);
+
+// Spread оператор (ES6-ES9)
+const video = ['youtube', 'vimeo', 'rutube'],
+      blogs = ['wordpress', 'livejoutnal', 'blogger'],
+      internet = [...video, ...blogs, 'vk', 'facebook'];
+
+console.log(internet);
+//... - объединение данных
+
+//Ещё пример
+function logger(a, b, c) {
+    console.log(a);
+    console.log(b);
+    console.log(c);
+}
+const num = [2, 5, 7];
+logger(...num);
+
+//Ещё пример
+const array = ['a', 'b'];
+const newArray2 = [...array];
+console.log(newArray2);
+
+//Ещё пример
+const q = {
+    one: 1,
+    two: 2
+};
+const newObj = {...q};
+console.log(newObj);
+
+
+
+// ----------------------- Основы ООП. прототипно-ориентированное наследование --------------- //
+// let strNew = "some";
+// let strObj1 = new String(strNew);
+//Создаём новую строку на основании strNew. Метод на строке оборачивает строку в объект,
+// потом использует метод, который есть у этого объекта, а потом возвращает всё обратно
+// console.log(typeof (strNew));
+// console.log(typeof (strObj1));
+
+// __proto__ нследование
+// const soldier - общее понятие, описывает всех солдат
+const soldier = {
+    health: 400,
+    armor: 200,
+    sayHello: function () {
+        console.log("Hello, Tom!");
+    }
+};
+
+//Третий вариант. Используем в реальных проектах.
+const tom = Object.create(soldier); //Создаём прототим tom, который наследуется от soldier
+console.log(tom.armor);
+tom.sayHello();
+
+/*
+const tom = {
+    health: 100
+};
+*/
+
+/*
+//Первый вариант наследования. Устаревший формат, лучше не использовать.
+tom.__proto__ = soldier;
+console.log(tom.armor);
+tom.sayHello();
+*/
+
+/*
+//Второй вариант. Современный формат.
+Object.setPrototypeOf(tom, soldier); //1й объект-которому назначаем прототим, 2й-объект, прототип которого устанавливаем
+console.log(tom.armor);
+tom.sayHello();
+*/
+
