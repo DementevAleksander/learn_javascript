@@ -447,5 +447,52 @@ tom.sayHello();
 */
 
 // ----------------------- Динамическая типизация в JavaScript --------------- //
+//String
+// 1 Вариант. Устаревший.
+console.log(typeof(String(null)));
+console.log(String(null));
+console.log(typeof(String(4)));
+
+// 2 Вариант. Конкатенация.
+console.log(typeof(5 + ''));
+
+const numb = 5;
+console.log("https://vk.com/catalog/" + numb);
+
+const fontSize = 26 + 'px';
+
+//Number
+// 1 Вариант. Устаревший.
+console.log(typeof(Number('4')));
+
+// 2 Вариант. Унарный плюс.
+console.log(typeof(+'4'));
+
+// 3 Вариант. Методы чисел, с помощью которых можно преобразовывать структуры в числа.
+console.log(typeof(parseInt("15px", 10)));
+
+let answer1 = +prompt("Hello!", "");
+// всё, что получаем от пользователей, это всё строки.
+
+//Boolean
+// 1 Вариант. Нативный.
+// False - 0, '', null, undefined, NaN; Остальное - True.
+let switcher = null;
+if (switcher) {
+    console.log('Работает...');
+} //Услвие не отработает, так как null это False.
+switcher = 1;
+if (switcher) {
+    console.log('Работает2...');
+} //Услвие  отработает, так как 1 это True.
+
+// 2 Вариант.
+console.log(typeof(Boolean('4')));
+// 3 Вариант.
+console.log(typeof(!!"4"));
+
+let x = 5;
+alert( x++ ); 
+
 
 
