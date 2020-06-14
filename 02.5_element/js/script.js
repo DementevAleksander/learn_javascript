@@ -49,11 +49,13 @@ console.log(oneHeart);
 const box777 = document.getElementById('box'),
       btns = document.getElementsByTagName('button'),
       circle777 = document.getElementsByClassName('circle'),
-      hearts = document.querySelectorAll('.heart'),
-      oneHeart = document.querySelector('.heart'),
-      wrapper = document.querySelector('.wrapper');
+      wrapper = document.querySelector('.wrapper'),
+      hearts = wrapper.querySelectorAll('.heart'), // получить .heart только внутри .wrapper.
+      oneHeart = wrapper.querySelector('.heart'); // получить .heart только внутри .wrapper.
+//или так      hearts = document.querySelectorAll('.heart'),
+//или так      oneHeart = document.querySelector('.heart');
 
-console.dir(box777);
+console.dir(box777); //Получить элемент в качестве объекта.
 
 // box777.style.backgroundColor = 'yellow';
 // box777.style.width = '500px';
@@ -62,6 +64,7 @@ box777.style.cssText = 'background-color: yellow; width: 1000px;';
 
 btns[1].style.borderRadius = '100%';
 circle777[0].style.backgroundColor = 'yellow'; //только для конкретных элементов.
+circle777[2].style.backgroundColor = 'yellow'; //только для конкретных элементов.
 
 /*
 for (let i = 0; i < hearts.length; i++) {
@@ -77,12 +80,35 @@ hearts.forEach(item => {
     item.style.backgroundColor = 'yellow';
 });
 
-const div = document.createElement('div'); //создание элемента на странице.
+const createDiv = document.createElement('div'); //создание элемента на странице. Создаётся только внутри файла JS.
 //const text = document.createTextNode('Это я написал с JS!'); //текстовый узел,без оболочки тега.Использ. редко.
 
 //Модификация класса CSS
-div.classList.add('black'); //Добавляем класс 'black'.
-//Добавляем div в конец body.
-document.body.append(div);
+createDiv.classList.add('black'); //Добавляем класс 'black'. Пока что только в файле JS.
+document.body.append(createDiv); //Добавляем div в конец body.
+wrapper.append(createDiv); //находим класс .wrapper и встаавляем div вконец.
+wrapper.prepend(createDiv); //находим класс .wrapper и встаавляем div вначало.
 
-wrapper.append(div); //находим класс .wrapper и встаавляем div вконец.
+hearts[1].before(createDiv); //вставляем div перед вторым элементом.
+hearts[1].after(createDiv); //вставляем div после второго элемента.
+
+// circle777[1].remove(); //Уалить.
+hearts[1].replaceWith(circle777[2]); // Второй эемент сердца заменяется третим кружком (переставляется).
+
+
+//Устаревшие конструкции, которые могут встретиться в существующих проектах.
+wrapper.appendChild(createDiv); //находим класс .wrapper и встаавляем div вконец.
+wrapper.insertBefore(createDiv, hearts[1]); //вставляем div перед вторым элементом сердца.
+wrapper.removeChild(hearts[1]); //Указываем элемент для удаления
+wrapper.replaceChild(circle777[0], hearts[0]); //1й аргумент чем заменяем, 2й аругмент что меняем.
+
+//Текст
+createDiv.innerHTML = "<h1>Привет!</h1>"; //Работает и с текстом и со структурой.
+createDiv.textContent = "Текст контент!"; //Работает только с текстом. Больше подходит для ввода данных пользователем.
+
+createDiv.insertAdjacentHTML("afterend", '<h2>Привет от insertAdjacentHTML</h2>');
+//1й аргумент - , 2й аргумент - тот HTML код, который хотим вставить.
+// beforebegin - вставить перед элементом.
+// afterend - вставить после элемента.
+// afterbegin - вставить внутрь элемента вначало.
+// beforeend - вставить внутрь элемента вконец.
