@@ -2,52 +2,51 @@
 
 // ----------------------- Типы данных и переменные ------------------------------------------------ //
 
-// let number = 5;  //number
-// console.log(number);
+let number = 5;  //number
+console.log(number);
 
-// let text = 'Увау!';  //string
-// console.log(text);
+let text = 'Увау!';  //string
+console.log(text);
 
-// let boolean = true;  //Boolean
-// console.log(true);
+let boolean = true;  //Boolean
+console.log(true);
 
 // console.log(null777); //null, script.js:12 Uncaught ReferenceError: null777 is not defined
 
-// let und; //undefined
-// console.log(und);
+let und; //undefined
+console.log(und);
 
-// let obj = { //Object
-//     name: 'apple',
-//     weight: 200
-// };
-// console.log(obj.name);
+let obj = { //Object
+    name: 'apple',
+    weight: 200
+};
+console.log(obj.name);
 // console.log(obj['name']);
 
-// let arr = ['plump.png', 'orange.jpg', 7777, 'apple.bmp', {}, []]; //Массивы[]
-// console.log(arr[1]);
+let arr = ['plump.png', 'orange.jpg', 7777, 'apple.bmp', {}, []]; //Массивы[]
+console.log(arr[1]);
 
-// alert ('Здравствуйте!');
+alert ('Здравствуйте!');
 
-// const result = confirm('Прочитаете до конца?');
-// console.log(result);
+const result = confirm('Прочитаете до конца?');
+console.log(result);
 
-// const answer = +prompt("Сколько вам лет?", "");
-// console.log(answer + 5);
+const answer = +prompt("Сколько вам лет?", "");
+console.log(answer + 5);
 
-// const answer = [];
-// answer[0] = prompt("Вопрос 1?", "");
-// answer[1] = prompt("Вопрос 2?", "");
-// answer[2] = prompt("Вопрос 3?", "");
-// console.log(answer);
+const answer2 = [];
+answer2[0] = prompt("Вопрос 1?", "");
+answer2[1] = prompt("Вопрос 2?", "");
+answer2[2] = prompt("Вопрос 3?", "");
+console.log(answer2);
 
-// const user = prompt("Как вас зовут?", "");
-// alert(`Привет, ${user}. Очень рады вас видеть на нашем сайте`);
+const user = prompt("Как вас зовут?", "");
+alert(`Привет, ${user}. Очень рады вас видеть на нашем сайте`);
 
 
 
 // ----------------------- Операторы в JS ------------------------------------------------ //
 
-/*
 let incr = 10,
     decr = 10;
 incr++; //++ - оператор инкримента, то есть увеличение на единицу
@@ -71,10 +70,10 @@ let isChecked = false,
 console.log (isChecked || !isClosed);
 
 console.log(2+5*3 != 7); // true
-*/
+
 
 // ----------------------- Условия ------------------------------------------------ //
-/*
+
 if (4 == 9) {
     console.log('OK!');
 } else {
@@ -107,27 +106,25 @@ switch (num) {
         console.log('Ни одно из значений не подошло.');    
         break;
 }
-*/
 
 // ----------------------- Циклы ------------------------------------------------ //
 
-// let num = 50;
-// while (num <= 55) {
-//     console.log(num);
-//     num++;
-// }
+let num3 = 50;
+while (num3 <= 55) {
+    console.log(num3);
+    num3++;
+}
 
-// do {
-//     console.log(num);
-//     num++;
-// }
-// while (num <= 55);
+do {
+    console.log(num3);
+    num3++;
+}
+while (num3 <= 55);
 
-/*
-let num = 50;
+let num4 = 50;
 for (let i = 1; i < 5; i++) {
-     console.log(num);
-     num++;
+     console.log(num4);
+     num4++;
 } 
 
 //let num = 50;
@@ -138,22 +135,21 @@ for (let i = 1; i < 100; i++) {
     }
      console.log(i);
 } 
-*/
 
 
 // ----------------------- Функции ------------------------------------------------ //
-/*
+
 // function declaration.
 //function имя (аргумент) {}. 
-let num = 10;
+let num5 = 10;
 function showFirstMessage(text) {
     console.log(text);
-    num = 20;
-    console.log(num);
+    num5 = 20;
+    console.log(num5);
 }
 //вызов фукнции
 showFirstMessage('Привет, Александр Андреевич! Мы вам очень рады!');
-console.log(num);
+console.log(num5);
 
 function calc(a, b) {
     return (a + b);
@@ -180,10 +176,9 @@ logger();
 const calculate = (a, b) => {
     return a + b;
 };
-*/
 
-// ----------------------- Методы и свойства строк и чисел ------------------------------------------------ //
-/*
+
+// ----------------------- Методы и свойства строк и чисел -------------------------------------- //
 //Строки
 const str = "коЛЛичество СИМВолов";
 //const arr = [1, 2, 7];
@@ -206,11 +201,9 @@ console.log(Math.round(numb));
 const weight = "145.3523523px";
 console.log(parseInt(weight));
 console.log(parseFloat(weight));
-*/
 
 
 // ----------------------- Callback-Функция ------------------------------------------------ //
-/*
 function first() {
     //выполнение действий
     setTimeout(function() {
@@ -233,7 +226,6 @@ function done() {
     console.log('Я прошёл этот урок.');
 }
 learnJS('JavaScript', done);
-*/
 
 // ----------------------- Объекты, деструктуризация объектов ------------------------------------- //
 
@@ -274,22 +266,22 @@ console.log(counter);
 
 
 // ----------------------- Массивы и псевдомассивы ------------------------------------- //
-/*
-const arr = [1, 2, 3, 6, 8];
-// arr.pop(); //удаляет последний элемент
-// arr.push(10); //добавляет элемент
-// console.log(arr);
-// console.log(arr.length);
+
+const arr1 = [1, 2, 3, 6, 8];
+arr1.pop(); //удаляет последний элемент
+arr1.push(10); //добавляет элемент
+console.log(arr1);
+console.log(arr1.length);
 
 //перебор элементов массива, цикл работет до тех пор, пока не закончатся элементы массива.
-// for (let i = 0; i < arr.length; i++) {
-//     console.log(arr[i]);   
-// }
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);   
+}
 
 //другой вариант
-// for (let value of arr) {
-//     console.log(value);
-// }
+for (let value of arr) {
+    console.log(value);
+}
 
 //3й вариант. item - элемент, который мы перебираем, i - номер по порядку, arr - ссылка на массив, который перебираем.
 arr.forEach(function (item, i, arr) {
@@ -297,18 +289,18 @@ arr.forEach(function (item, i, arr) {
 });
 
 
-const str = prompt("Вопрос?", "");
-const products = str.split(", "); //указывается разделитель через который указывается перечисление
+const str4 = prompt("Вопрос?", "");
+const products = str4.split(", "); //указывается разделитель через который указывается перечисление
 products.sort(compareName); //сортировка в алфавитном порядке
 console.log(products.join("; "));
 
 function compareName(a, b) { //callback-функция для корректной сортировки числел
     return a - b;
 }
-*/
+
 
 // ----------------------- Передача по ссылке или по значению ------------------------------------- //
-/*
+
 let a = 5,
     b = a;
 
@@ -317,18 +309,17 @@ console.log(b);
 console.log(a);
 
 // Тот же вариант с объектом
-const obj = {
+const obj3 = {
     a: 5,
     b: 10
 };
-const copy = obj; //Объект не копируется, а передаётся ссылка на объек, при изменении copy меняется obj
+const copy = obj3; //Объект не копируется, а передаётся ссылка на объек, при изменении copy меняется obj
 copy.a = 11;
 console.log(copy);
 console.log(obj);
-*/
 
 //Создание копии объекта
-function copy(mainObject) {
+function copy3(mainObject) {
     let objCopy = {};
     let key;
     for (key in mainObject) {
@@ -380,13 +371,13 @@ console.log(internet);
 //... - объединение данных
 
 //Ещё пример
-function logger(a, b, c) {
+function logger1(a, b, c) {
     console.log(a);
     console.log(b);
     console.log(c);
 }
-const num = [2, 5, 7];
-logger(...num);
+const num1 = [2, 5, 7];
+logger1(...num1);
 
 //Ещё пример
 const array = ['a', 'b'];
@@ -404,12 +395,12 @@ console.log(newObj);
 
 
 // ----------------------- Основы ООП. прототипно-ориентированное наследование --------------- //
-// let strNew = "some";
+let strNew = "some";
 // let strObj1 = new String(strNew);
 //Создаём новую строку на основании strNew. Метод на строке оборачивает строку в объект,
 // потом использует метод, который есть у этого объекта, а потом возвращает всё обратно
-// console.log(typeof (strNew));
-// console.log(typeof (strObj1));
+console.log(typeof (strNew));
+console.log(typeof (strObj1));
 
 // __proto__ нследование
 // const soldier - общее понятие, описывает всех солдат
@@ -426,25 +417,25 @@ const tom = Object.create(soldier); //Создаём прототим tom, ко�
 console.log(tom.armor);
 tom.sayHello();
 
-/*
-const tom = {
+
+const tom1 = {
     health: 100
 };
-*/
 
-/*
+
+
 //Первый вариант наследования. Устаревший формат, лучше не использовать.
-tom.__proto__ = soldier;
+//tom.__proto__ = soldier;
 console.log(tom.armor);
 tom.sayHello();
-*/
 
-/*
+
+
 //Второй вариант. Современный формат.
 Object.setPrototypeOf(tom, soldier); //1й объект-которому назначаем прототим, 2й-объект, прототип которого устанавливаем
 console.log(tom.armor);
 tom.sayHello();
-*/
+
 
 // ----------------------- Динамическая типизация в JavaScript --------------- //
 //String
@@ -456,8 +447,8 @@ console.log(typeof(String(4)));
 // 2 Вариант. Конкатенация.
 console.log(typeof(5 + ''));
 
-const numb = 5;
-console.log("https://vk.com/catalog/" + numb);
+const numb5 = 5;
+console.log("https://vk.com/catalog/" + numb5);
 
 const fontSize = 26 + 'px';
 
@@ -492,9 +483,4 @@ console.log(typeof(Boolean('4')));
 console.log(typeof(!!"4"));
 
 let x = 5;
-alert( x++ ); 
-
-
-
-
-
+alert( x++ );
