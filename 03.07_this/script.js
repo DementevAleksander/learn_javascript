@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 // this - контекст вызова.
 function showThis(a, b) {
       console.log(this);
