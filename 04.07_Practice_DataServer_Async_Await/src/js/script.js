@@ -226,6 +226,47 @@ window.addEventListener('DOMContentLoaded', () => { //Загружаем DOM с�
         }
     }
     //Класс готов. Теперь его можно использовать.
+
+    const getResource = async (url) => { //Получаем данные с сервера.
+        let res = await fetch(url);
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+        }
+        return await res.json(); 
+    }; 
+
+    getResource('http://localhost:3000/menu')
+    .then(data => {
+        data.forEach(({img, altimg, title, descr, price}) => { //реструктуризация объекта, вытаскиваем свойства объекта.
+            new MenuCard(img, altimg, title, descr, price, ".menu .container").render(); //.menu .container указываем родителя, куда мы будем всё это пушать.
+        });
+    });
+
+    //Динамическая вёрстка. Минус в том, что нет шаблонизации. Данный способ подходит в том случае, если нужно один раз сформировать вёрстку.
+        // getResource('http://localhost:3000/menu')
+    //     .then(data => createCard(data));
+
+    // function createCard(data) {
+    //     data.forEach(({img, altimg, title, descr, price}) => {
+    //         const element = document.createElement('div');
+
+    //         element.classList.add("menu__item");
+
+    //         element.innerHTML = `
+    //             <img src=${img} alt=${altimg}>
+    //             <h3 class="menu__item-subtitle">${title}</h3>
+    //             <div class="menu__item-descr">${descr}</div>
+    //             <div class="menu__item-divider"></div>
+    //             <div class="menu__item-price">
+    //                 <div class="menu__item-cost">Цена:</div>
+    //                 <div class="menu__item-total"><span>${price}</span> грн/день</div>
+    //             </div>
+    //         `;
+    //         document.querySelector(".menu .container").append(element);
+    //     });
+    // }
+
+
     //Создаём новый объект и вызываем метод render().
     // const div = new MenuCard();
     // div.render();
@@ -273,7 +314,6 @@ window.addEventListener('DOMContentLoaded', () => { //Загружаем DOM с�
         loading: 'img/form/spinner.svg', //Исползуем спиннер.
         success: 'Спасибо! Мы свяжемся с вами в ближайшее время!',
         failure: 'Что-то пошло не так! Поломалося!',
-
     };
 
     //Берём все формы и под каждую из них подвязываем bindPostData().
@@ -315,12 +355,9 @@ window.addEventListener('DOMContentLoaded', () => { //Загружаем DOM с�
             const formData = new FormData(form); //собираем данные из document.querySelector('form');. Создаём объект, в котором будут введённые данные.
 
             //Трансформируем formData в JSON формат.
-            const object = {}; //Содали пустой объект.
-            formData.forEach(function(value, key){
-                object[key] = value;
-            });
+            const json = JSON.stringify(Object.fromEntries(formData.entries())); // .entries() - получаем данные с формы в формате массива. .fromEntries() - Превращаем массив в объект. Затем объект превращаем в JSON-формат.
 
-            postData('http://localhost:3000/requests', JSON.stringify(object))
+            postData('http://localhost:3000/requests', json)
             .then(data => {
                 console.log(data); //При полоительном результате выводим объект с данными в консоль.
                 console.log(message.success);
@@ -386,7 +423,7 @@ window.addEventListener('DOMContentLoaded', () => { //Загружаем DOM с�
 
     //Обращаемся к локальной БД.
     fetch('http://localhost:3000/menu')
-        .then(data => data.json()) //Юерём объект из сервера и превращаем его в js объект.
+        .then(data => data.json()) //Берём объект из сервера и превращаем его в js объект.
         .then(res => console.log(res)); //выведем результат в консоль.
     //Результат. Получены данные для получения карточек меню. Меню - массив, который содержит отдельные объекты. Получаем массив данных. Если бы обращались на прямую к файлу fetch('db.json'), то получали бы объект, так как там объекты.
         // (3) [{…}, {…}, {…}]
@@ -400,7 +437,7 @@ window.addEventListener('DOMContentLoaded', () => { //Загружаем DOM с�
     //Информация о JSON-сервере https://github.com/typicode/json-server
     //Запуск JSON-сервера. json-server src/db.json
     // npx json-server --watch src/db.json
-
+    // npx json-server --watch db.json --port 3000
 });
 
 
