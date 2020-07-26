@@ -25,3 +25,6 @@ yarn-debug.log*
 yarn-error.log*
 04.07_Practice_DataServer_Async_Await/node_modules/
 04.07_practice_proper_food_final/node_modules/
+04.11_webpack/webpack-demo/node_modules/
+04.11_webpack/webpack-demo/package.json
+04.11_webpack/webpack-demo/package-lock.json
