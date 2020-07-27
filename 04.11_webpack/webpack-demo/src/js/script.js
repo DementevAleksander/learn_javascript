@@ -10,7 +10,7 @@ myModuleInstance.goodbye();
 //Браузер не умеет собирать модули самостоятельно.
 // mkdir webpack-demo - создаём папку в проекте.
 // cd webpack-demo - переходим в эту папку.
-// npm init -y - устанавливаем.
+// npm init -y - устанавливаем (в корень проекта).
 // npm install webpack webpack-cli --save-dev - устанавливаем для работы в консоле.
 // npx webpack - запуск сборщика из папки \...проект...\webpack-demo>npx webpack.
 //Создаётся новый файл bundle.js и bundle.js.map с объединённым кодом в папке \...проект...\webpack-demo\dist\js\... (путь прописывается в файле с конфигурацией).

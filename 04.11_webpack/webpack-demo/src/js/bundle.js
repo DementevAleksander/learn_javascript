@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/script.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./js/script.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/js/main.js":
-/*!************************!*\
-  !*** ./src/js/main.js ***!
-  \************************/
+/***/ "./js/main.js":
+/*!********************!*\
+  !*** ./js/main.js ***!
+  \********************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -110,15 +110,15 @@ module.exports = myModule; //Устанавливаем функцию на эк
 
 /***/ }),
 
-/***/ "./src/js/script.js":
-/*!**************************!*\
-  !*** ./src/js/script.js ***!
-  \**************************/
+/***/ "./js/script.js":
+/*!**********************!*\
+  !*** ./js/script.js ***!
+  \**********************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //Импортируем функцию myModule() из файла main.js.
-const myModule = __webpack_require__(/*! ./main */ "./src/js/main.js");
+const myModule = __webpack_require__(/*! ./main */ "./js/main.js");
 
 //Используем функцию myModule() из файла main.js.
 const myModuleInstance = new myModule();
