@@ -1,3 +1,5 @@
+import {getResource} from '../services/services';
+
 function cards() {
     //------------------------- Классы стандарт ES6. Карточки на сайте. ----------------------//
     // Используем классы для карточек.
@@ -42,15 +44,7 @@ function cards() {
             this.parent.append(element); //Помещаем новый элемент внутрь элемента. Метод ParentNode.append добавляет набор объектов Node или DOMString в конец (после последнего потомка) ParentNode. DOMString объекты добавляются как Text.
         }
     }
-    //Класс готов. Теперь его можно использовать.
-
-    const getResource = async (url) => { //Получаем данные с сервера.
-        let res = await fetch(url);
-        if (!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
-        return await res.json(); 
-    }; 
+    //Класс готов. Теперь его можно использовать. 
 
     getResource('http://localhost:3000/menu')
     .then(data => {
@@ -128,4 +122,4 @@ function cards() {
     // ).render();
 }
 
-module.exports = cards;
+export default cards; //Модульная структура стандарта ES6.

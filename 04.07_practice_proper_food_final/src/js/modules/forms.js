@@ -1,9 +1,12 @@
-function forms() {
+import {closeModal, openModal} from './modal';
+import {postData} from '../services/services';
+
+function forms(formSelector, modalTimerId) {
     //---------------------- Скрипт отправки данных на сервер. Вариант №2 -------------------------//
     //Современный метод.
     //Задача - взять несколько форм, которые есть на сайте и с них отправлять данные к файлу server.php.
     //Чтобы не создавать два обработчика (так как две формы отпраквки), мы его обернём в функцию.
-    const form = document.querySelectorAll('form');    //Получаем все формы по тегу form
+    const form = document.querySelectorAll(formSelector);    //Получаем все формы по тегу form
     //Пишем функцию, которая отвечает за постинг данных.
     const message = { // Сообщения по итогам обращения к серверу.
         //loading: 'Загрузка',
@@ -16,25 +19,6 @@ function forms() {
     form.forEach(item => {
         bindPostData(item);
     });
-    
-    //пишем функцию postData, которая обрабатывает запрос к серверу, fetch'ит.
-    //Получаем ответ от сервера, например, что запостили успешно. После этого трансформирует ответ в JSON-формат.
-    const postData = async (url, data) => { // postData - отвечает за постинг данных на сервер. async - внутри функции будет асинхронный код, для async необходимо использовать парный оператор await, await ставим перед теми операциями, которые нужно дождаться. async и await всегда используются вместе.
-        let res = await fetch(url, { // fetch - запрос. Fetch API предоставляет интерфейс JavaScript для работы с запросами и ответами HTTP. Он также предоставляет глобальный метод fetch(), который позволяет легко и логично получать ресурсы по сети асинхронно. Подобная функциональность ранее достигалась с помощью XMLHttpRequest.
-        // await - сначала ждёт пока запрос будет отправлен на сервер и только когда получили ответ от сервера записываются данные в переменную res.
-            //Задаём настройки - метод и body (которое отправляем).
-            method: 'POST',
-            headers: { //Заголовки, какой контент мы отправляем.
-                'Content-Type': 'application/json'
-            },
-            body: data //данные формы.
-        }); 
-        //Обрабатываем JSON-формат.
-        return await res.json(); //Обозначение объектов JavaScript (JSON - JavaScript Object Notation) - стандартный текстовый формат для представления структурированных данных на основе синтаксиса объекта JavaScript. Он обычно используется для передачи данных в веб-приложениях (например, отправка некоторых данных с сервера клиенту,таким образом чтобы это могло отображаться на веб-странице или наоборот).
-        // await - дожидаемся окончания работы промисса json() и только после этого он его возвращает из функции.
-    };
-
-    
 
     function bindPostData(form) { // bindPostData - привязка постинга, то есть привязать какой-то постинг данных.
         form.addEventListener('submit', (e) => { //Отслеживаем отправку данных. Нажатие кнопки.
@@ -78,7 +62,7 @@ function forms() {
         const prevModalDialog = document.querySelector('.modal__dialog');
 
         prevModalDialog.classList.add('hide'); //Скрываем .modal__dialog добавлением класса .hide.
-        openModal(); //Функция описана выше. Открывает модальное окно modal.classList.add('show'); modal.classList.remove('hide');
+        openModal('.modal', modalTimerId); //Функция описана выше. Открывает модальное окно modal.classList.add('show'); modal.classList.remove('hide');
 
         const thanksModal = document.createElement('div');
         thanksModal.classList.add('modal__dialog'); //Для div добавляем класс modal__dialog.
@@ -95,7 +79,7 @@ function forms() {
             thanksModal.remove(); //через 4 секунды удаляем div с классом modal__dialog.
             prevModalDialog.classList.add('show');
             prevModalDialog.classList.remove('hide');
-            closeModal();
+            closeModal('.modal');
         }, 4000);
     }
 
@@ -142,4 +126,4 @@ function forms() {
     // npx json-server --watch db.json --port 3000
 }
 
-module.exports = forms;
+export default forms; //Модульная структура стандарта ES6.

@@ -1,4 +1,4 @@
-function slider() {
+function slider({conteiner, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
     /*
     //------------------------------ Слайдер. Вариант №1 -------------------------//
     let slideIndex = 1; //Определяет текущее положение слайда. Изначально №1.
@@ -141,15 +141,15 @@ function slider() {
     let offset = 0; //Определяет текущий отступ слайда.
     let slideIndex = 1; //Определяет текущее положение слайда. Изначально №1.
 
-    const slides = document.querySelectorAll('.offer__slide'), //Родительский элемент каждого отдельного слайда.
-        slider = document.querySelector('.offer__slider'), //Родительский элемен всего слайдера, включая кнопки навигации.
-        prev = document.querySelector('.offer__slider-prev'), //Стрелка влево.
-        next = document.querySelector('.offer__slider-next'), //Стрелка вправо.
-        total = document.querySelector('#total'), //Номер слайда "Всего" 04/#total.
-        current = document.querySelector('#current'), //Номер текущего слайда #current/04.
-        slidesWrapper = document.querySelector('.offer__slider-wrapper'), // Обёртка для слайдов (для тега с классом .offer__slider-inner). Родительский элемент всех слайдов.
+    const slides = document.querySelectorAll(conteiner), //Родительский элемент каждого отдельного слайда.
+        slider = document.querySelector(slide), //Родительский элемен всего слайдера, включая кнопки навигации.
+        prev = document.querySelector(prevArrow), //Стрелка влево.
+        next = document.querySelector(nextArrow), //Стрелка вправо.
+        total = document.querySelector(totalCounter), //Номер слайда "Всего" 04/#total.
+        current = document.querySelector(currentCounter), //Номер текущего слайда #current/04.
+        slidesWrapper = document.querySelector(wrapper), // Обёртка для слайдов (для тега с классом .offer__slider-inner). Родительский элемент всех слайдов.
         width = window.getComputedStyle(slidesWrapper).width, //Метод Window.getComputedStyle() возвращает объект, содержащий значения всех CSS-свойств элемента, полученных после применения всех активных таблиц стилей, и завершения базовых вычислений значений, которые они могут содержать. Получаем ширину width окошка .offer__slider-wrapper, через которое отображаются слайды.
-        slidesField = document.querySelector('.offer__slider-inner'); // Обёртка для слайдов (для тега с классом .offer__slide)
+        slidesField = document.querySelector(field); // Обёртка для слайдов (для тега с классом .offer__slide)
 
     //Определяем общее количество слайдов.
     if (slides.length < 10) { //Если количество элементов .offer__slide меньше 10.
@@ -294,4 +294,4 @@ function slider() {
     });
 }
 
-module.exports = slider;
+export default slider; //Модульная структура стандарта ES6.

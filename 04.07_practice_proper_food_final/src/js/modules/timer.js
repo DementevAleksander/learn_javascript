@@ -1,7 +1,6 @@
-function timer() {
+function timer(id, deadline) {
     //------------------------------------- Таймер на сайте -------------------------------//
     // Timer
-    const deadline = '2020-07-31'; //Это будет отправная точка. Будущая дата.
     // Делаем функцию, которая определяет разницу между деадлайном и текущим временем.
     function getTimeRemaining(endtime) {
         const t = Date.parse(endtime) - Date.parse(new Date()), //получаем разницу в милисекундах между конечной датой и текущей датой.
@@ -64,7 +63,7 @@ function timer() {
         updateClock();
     }
     //вызываем все функции
-    setClock('.timer', deadline);
+    setClock(id, deadline);
 }
 
-module.exports = timer;
+export default timer; //Модульная структура стандарта ES6.

@@ -1,8 +1,8 @@
-function tabs() {
+function tabs(tabsSelector, tabsContentSelector, tabsParentSelector, activeClass) {
     //--------------------- Переключение контента по нажатию на вкладку Tab --------------//
-    const tabs = document.querySelectorAll('.tabheader__item'), //Получаем все вкладки.
-          tabsContent = document.querySelectorAll('.tabcontent'), //Получаем весь контентент для вкладок.
-          tabsParent = document.querySelector('.tabheader'); //Получаем родитеьский элемент вкладок.
+    let tabs = document.querySelectorAll(tabsSelector), //Получаем все вкладки.
+        tabsContent = document.querySelectorAll(tabsContentSelector), //Получаем весь контентент для вкладок.
+        tabsParent = document.querySelector(tabsParentSelector); //Получаем родитеьский элемент вкладок.
     
     function hideTypeContent() { //Создаём функуию, которая скрывает контент вкладки.
         tabsContent.forEach(item => { // перебираем псевдомасив с .tabcontent
@@ -13,7 +13,7 @@ function tabs() {
         });
         
         tabs.forEach(item => { //Убираем класс активности. Перебираем псевдомасив с .tabheader__item
-            item.classList.remove('tabheader__item_active'); //удаляем ...._active найденный в .tabheader__item.
+            item.classList.remove(activeClass); //удаляем ...._active найденный в .tabheader__item.
         });
     }
 
@@ -22,7 +22,7 @@ function tabs() {
         // tabsContent[i].style.display = 'block'; //в реальных проектах не всегда испольуются inline стили.
         tabsContent[i].classList.add('show', 'fade'); //добавляем класс hide, который скрывает контент + анимация.
         tabsContent[i].classList.remove('hide'); //добавляем класс show, который показывает контент.
-        tabs[i].classList.add('tabheader__item_active'); //добавляем ...._active найденный в .tabheader__item.
+        tabs[i].classList.add(activeClass); //добавляем ...._active найденный в .tabheader__item.
     }
 
     hideTypeContent();
@@ -35,7 +35,7 @@ function tabs() {
     // который кликнул пользователь, тогда мы берём его номер и показываем на странице.
     tabsParent.addEventListener('click', (event) => { //Нажимаем на .tabheader
         const target = event.target;
-        if (target && target.classList.contains('tabheader__item')) { //кликнули точно на вкладку.
+        if (target && target.classList.contains(tabsSelector.slice(1))) { //кликнули точно на вкладку.
             tabs.forEach((item, i) => { //перебираем массив с вкладками .tabheader__item.
                 if (target == item) { // если .tabheader__item совпадаем с элементом в .forEach, то есть item.
                     hideTypeContent(); //то скрываем весь контент.
@@ -46,4 +46,4 @@ function tabs() {
     });
 }
 
-module.exports = tabs;
+export default tabs; //Модульная структура стандарта ES6.
