@@ -28,3 +28,4 @@ yarn-error.log*
 04.11_webpack/webpack-demo/node_modules/
 04.11_webpack/webpack-demo/package.json
 04.11_webpack/webpack-demo/package-lock.json
+04.14_jquery/node_modules/
