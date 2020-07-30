@@ -35,6 +35,7 @@ function logger1() {
 // Когда таймер с интервалом setInterval работает, он не учитывает как долго будет работать функция внутри него.
 // То есть тяжёлая функция может выполняться секунду, а задержка в пол секудны, что некорректно.
 
+/*
 //Рекурсиный setTimeOut.
 let id = setTimeout(function log() {
     console.log('Здрасссьсэ!');
@@ -58,3 +59,22 @@ function myAnimation() { //устаревший метод.
     }
 }
 btn.addEventListener('click', myAnimation);
+*/
+
+const elem = document.querySelector('.box');  
+let pos = 0;
+
+function myAnimation() {
+    pos++;
+    elem.style.top = pos + "px";
+    elem.style.left = pos + 'px';
+
+    if (pos < 300) {
+        requestAnimationFrame(myAnimation); //Запуск анимации.
+    }
+}
+
+btn.addEventListener('click', () => requestAnimationFrame(myAnimation));
+
+let id = requestAnimationFrame(myAnimation);
+cancelAnimationFrame(id);
