@@ -5,6 +5,7 @@ import SearchPanel from '../search-panel';
 import PostStatusFilter from '../post-status-filter';
 import PostList from '../post-list';
 import PostAddForm from '../post-add-form';
+import WhoAmIAll from '../test_project/test_project';
 
 import './app.css';
 
@@ -64,6 +65,7 @@ export default class App extends Component { //Компонент с прило�
                     onDeleted={this.deletedItem} />
                 <PostAddForm
                     onAdd={this.addItem} />
+                <WhoAmIAll/>
             </div>
         )
     }
