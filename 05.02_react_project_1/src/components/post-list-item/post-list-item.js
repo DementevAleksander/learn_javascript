@@ -2,62 +2,38 @@ import React, {Component} from 'react';
 import './post-list-item.css';
 
 export default class PostListItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            important: false,
-            like: false
-        };
-        this.onImportant = this.onImportant.bind(this);
-        this.onLike = this.onLike.bind(this);
-    }
-
-    //Обработчик события - изменяет пост на важный ("звёздочка").
-    onImportant() {
-        this.setState(({important}) => ({
-            important: !important
-        }))
-    }
-
-    //Обработчик события - ставит лайк.
-    onLike() {
-        this.setState(({like}) => ({
-            like: !like
-        }))
-    }
 
     render() {
-        const {label, onDeleted} = this.props; //Свойство приходит в каждый созданный компонент PostListItem. 
-        const {important, like} = this.state;
-        let classNames = 'app-list-item d-flex justify-content-between'
+        const {label, onDelete, onToggleImportant, onToggleLiked, like, important} = this.props;
+        let classNames = 'app-list-item d-flex justify-content-between';
 
         if (important) {
-            classNames += ' important';
+            classNames +=' important';
         }
 
         if (like) {
-            classNames += ' like';
+            classNames +=' like';
         }
 
         return (
             <div className={classNames}>
-                <span
+                <span 
                 className="app-list-item-label"
-                onClick={this.onLike}>
+                onClick={onToggleLiked}>
                     {label}
                 </span>
                 <div className="d-flex justify-content-center align-items-center">
                     <button 
-                        type="button"
-                        className="btn-star btn-sm"
-                        onClick={this.onImportant}>
-                            <i className="fa fa-star"></i>
+                    type="button" 
+                    className="btn-star btn-sm"
+                    onClick={onToggleImportant}>
+                        <i className="fa fa-star"></i>
                     </button>
                     <button 
-                        type="button"
-                        className="btn-trash btn-sm"
-                        onClick={onDeleted}>
-                            <i className="fa fa-trash-o"></i>
+                    type="button" 
+                    className="btn-trash btn-sm"
+                    onClick={onDelete}>
+                        <i className="fa fa-trash-o"></i>
                     </button>
                     <i className="fa fa-heart"></i>
                 </div>
