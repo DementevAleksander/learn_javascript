@@ -4,7 +4,7 @@ export default class GotService {
         this._apiBase = 'https://www.anapioficeandfire.com/api';
     }
 
-    getResource = async (url) => {
+    async getResource(url) {
         const res = await fetch(`${this._apiBase}${url}`);
     
         if (!res.ok) {
@@ -14,27 +14,70 @@ export default class GotService {
         return await res.json();
     }
 
-    getAllBooks() {
-        return this.getResource(`/books/`);
+    async getAllBooks() {
+        const res = await this.getResource(`/books/`);
+        return res.map(this._transformBook);
     }
     
-    getBook(id) {
-        return this.getResource(`/books/${id}/`);
+    async getBook(id) {
+        const book = await this.getResource(`/books/${id}/`);
+        return this._transformBook(book);
     }
     
-    getAllCharacters() {
-        return this.getResource(`/characters?page=5&pageSize=10`);
+    async getAllCharacters() {
+        const res = await this.getResource(`/characters?page=5&pageSize=10`);
+        return res.map(this._transformCharacter);
     }
     
-    getCharacter (id) {
-        return this.getResource(`/characters/${id}`);
+    async getCharacter(id) {
+        const character = await this.getResource(`/characters/${id}`);
+        return this._transformCharacter(character);
     }
     
-    getAllHouses() {
-        return this.getResource(`/houses/`);
+    async getAllHouses() {
+        const res = await this.getResource(`/houses/`);
+        return res.map(this._transformHouse);
     }
     
-    getHouse(id) {
-        return this.getResource(`/houses/${id}/`);
+    async getHouse(id) {
+        const house = this.getResource(`/houses/${id}/`);
+        return this._transformHouse(house);
+    }
+
+    isSet(data) {
+        if (data) {
+            return data
+        } else {
+            return 'no data :('
+        }
+    }
+    _transformCharacter(char) {
+        return {
+            name: this.isSet(char.name),
+            gender: this.isSet(char.gender),
+            born: this.isSet(char.born),
+            died: this.isSet(char.died), 
+            culture: this.isSet(char.culture)
+        };
+    }
+
+    _transformHouse(house) {
+        return {
+            name: house.name,
+            region: house.region,
+            words: house.words,
+            titles: house.titles,
+            overlord: house.overlord,
+            ancestralWeapons: house.ancestralWeapons
+        };
+    }
+    
+    _transformBook(book) {
+        return {
+            name: book.name,
+            numberOfPages: book.numberOfPages,
+            publiser: book.publiser,
+            released: book.released
+        };
     }
 }
