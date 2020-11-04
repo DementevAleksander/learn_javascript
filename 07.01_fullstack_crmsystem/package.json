@@ -1,0 +1,22 @@
+{
+  "name": "07.01_fullstack_crmsystem",
+  "version": "1.0.0",
+  "description": "fullstack app crm system angular and express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "server": "nodemon index"
+  },
+  "keywords": [
+    "express",
+    "angular"
+  ],
+  "author": "Dementev Aleksandr",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
