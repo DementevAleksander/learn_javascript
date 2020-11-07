@@ -1,10 +1,9 @@
-const express = require('express');
-const controller = require('../controllers/auth');
-//сущность для создания роутов
-const router = express.Router();
+const express = require('express'); // подключение express
+const controller = require('../controllers/auth'); // подключение логики из controllers
+const router = express.Router(); //сущность для создания роутов
 
-router.get('/login', controller.login) //итог строки http://localhost:5000/api/auth/login
-router.get('/register', controller.register) //итог строки http://localhost:5000/api/auth/register
+router.post('/login', controller.login) //итог строки http://localhost:5000/api/auth/login
+router.post('/register', controller.register) //итог строки http://localhost:5000/api/auth/register
 
 
 module.exports = router;
