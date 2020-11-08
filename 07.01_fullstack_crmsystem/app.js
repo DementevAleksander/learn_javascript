@@ -25,6 +25,7 @@ app.use(passport.initialize())
 require('./middleware/passport')(passport) //подключаем файл, в котором описываем логику и защиту роутов.
 
 app.use(morgan('dev'))
+app.use('/uploads', express.static('uploads')) //когда мы обращаемся к папку /uploads, то с помощью express.static('uploads') делаем папку статической и передаём параметр uploads. Это дасть возможность получать доступ к картинкам напрямую (это нужно для загрузки картинок из БД на клиент).
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json()) //генерирует json объекты из объектов javascript
 app.use(cors())
