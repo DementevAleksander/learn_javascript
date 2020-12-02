@@ -1,3 +1,21 @@
-<p>
-  analytics-page works!
-</p>
+<div class="page-title">
+  <h4>Аналитика</h4>
+</div>
+
+<div [style.display]="pending ? 'none' : 'block'">
+  <!-- <div class="average-price">
+    <p>Энергетическая ценность <strong>{{average}} ккал</strong></p>
+  </div> -->
+
+  <div class="analytics-block pb3">
+    <h5>Калорийность, за день</h5>
+    <canvas #gain></canvas>
+  </div>
+
+  <div class="analytics-block">
+    <h5>Количество приёмов пищи</h5>
+    <canvas #order></canvas>
+  </div>
+</div>
+
+<app-loader *ngIf="pending"></app-loader>

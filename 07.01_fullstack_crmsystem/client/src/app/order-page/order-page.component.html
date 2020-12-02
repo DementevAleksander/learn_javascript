@@ -1,9 +1,9 @@
 <div class="page-title">
-  <h4 *ngIf="isRoot">Заказ</h4>
+  <h4 *ngIf="isRoot">Приём пищи</h4>
   <h4 *ngIf="!isRoot">
-    <a routerLink="/order">Заказ</a>
+    <a routerLink="/order">Приём пищи</a>
     <i class="material-icons">keyboard_arrow_right</i>
-    Добавить продукцию
+    Добавить приём пищи
   </h4>
   <button
       class="waves-effect btn grey darken-1"
@@ -20,13 +20,13 @@
 
 <div #modal class="modal modal-fixed-footer">
   <div class="modal-content">
-    <h4 class="mb1">Ваш заказ</h4>
+    <h4 class="mb1">Ваш приём пищи</h4>
     <table class="highlight">
       <thead>
       <tr>
         <th>Название</th>
-        <th>Количество</th>
-        <th>Цена</th>
+        <th>Количество, грамм</th>
+        <th>Калорийность, на 100 грамм</th>
         <th></th>
       </tr>
       </thead>
@@ -41,7 +41,7 @@
       </tbody>
     </table>
     <div class="order-summary">
-      <p>Общая стоимость <strong>{{order.price}} руб.</strong></p>
+      <p>Общая энергетическая ценность<strong>{{order.price}} ккал</strong></p>
     </div>
   </div>
   <div class="modal-footer">

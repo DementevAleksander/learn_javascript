@@ -61,7 +61,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
   onDeletePosition(event: Event, position: Position) {
     event.stopPropagation()
-    const decision = window.confirm(`Удалить позицию "${position.name}"?`)
+    const decision = window.confirm(`Удалить продукт "${position.name}"?`)
 
     if (decision) {
       this.positionsService.delete(position).subscribe(
@@ -108,15 +108,12 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
     } else {
       this.positionsService.create(newPosition).subscribe(
         position => {
-          MaterialService.toast('Позиция создана')
+          MaterialService.toast('Продукт добавлен')
           this.positions.push(position)
         },
         error => MaterialService.toast(error.error.message),
         completed
       )
     }
-
-
   }
-
 }
