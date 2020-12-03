@@ -1,6 +1,7 @@
 const express = require('express') //Подключаем express
 const mongoose = require('mongoose') //фреймвор mogoose, который работает (общается) с БД MongoDB
 const passport = require('passport') //Простая ненавязчивая аутентификация для Node.js
+const path = require('path') //ищет файл
 
 const bodyParser = require('body-parser') //Подключаем пакет body-parser. дополнительный пакет, который парсит данные для считывания экспрессом, которые приходят от пользователя
 const cors = require('cors') //пакет предназначен для обработки cors запросов, например, если клиент находится на другом домене, то мы всё равно сможем отвечать нашим сервером.
@@ -36,5 +37,17 @@ app.use('/api/analytics', analyticsRoutes)
 app.use('/api/category', categoryRoutes)
 app.use('/api/order', orderRoutes)
 app.use('/api/position', positionRoutes)
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/dist/client'))
+
+  app.get('*', (req, res) => {
+    res.sendFile(
+      path.resolve(
+        __dirname, 'client', 'dist', 'client', 'index.html'
+      )
+    )
+  })
+}
 
 module.exports = app;
