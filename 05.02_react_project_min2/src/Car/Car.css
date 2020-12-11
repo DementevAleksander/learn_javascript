@@ -1,0 +1,7 @@
+.borderCar {
+    width: 250px;
+    border: 4px outset rgb(29, 202, 179);
+    background: rgb(241, 202, 85);
+    padding: 10px;
+    margin: 5px auto 5px auto;
+}
