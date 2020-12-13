@@ -4,4 +4,28 @@
     background: rgb(241, 202, 85);
     padding: 5px;
     margin: 4px auto 4px auto;
+    border-radius: 10px;
+}
+
+/* .input {
+
+} */
+
+.input:active, .input:focus {
+    outline: none;
+}
+
+.input.green {
+    border: 2px solid green;
+    border-radius: 4px;
+}
+
+.input.red {
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.input.bold {
+    border: 5px solid green;
+    font-weight: bold;
 }

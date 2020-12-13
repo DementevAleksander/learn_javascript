@@ -11,7 +11,7 @@ class App extends Component {
       {name: 'Mazda', year: 2010}
     ],
     pageTitle: 'React components',
-    showCars: false
+    showCars: true
   }
 
   changeTitleHandler = (newTitle) => {
@@ -42,6 +42,33 @@ class App extends Component {
     })
   }
 
+  onChangeName(inputText, index) {
+    console.log(inputText, index)
+    const carNew = this.state.cars[index] // по индексу нашли строку с машиной, с которой работаем, сохранили в переменную carNew.
+    // console.log(carNew, index)
+    carNew.name = inputText // присвоили полю name, то значение, которое ввели руками в поле ввода.
+    // console.log(carNew, index, carNew.name)
+
+    //теперь нужно изменить машину в исходном массиве cars, находящийся в state
+    const carsNewArray = [...this.state.cars] //клон массива car, находящийся в state
+    carsNewArray[index] = carNew //теперь изменям массив carsNewArray, находим номер записи по индексу, записываем получившуюся строку с новым именем машины в новый массив в соответсвующий индекс, с которвм работали.
+    this.setState({
+      cars: carsNewArray //перезаписываем массив cars, находящийся в state.
+    })
+  }
+
+  deleteHandler(index) {
+    const carsNewArray = [...this.state.cars]
+    carsNewArray.splice(index, 1) //удаляем один элемент
+    // const carsNewArrayModified = carsNewArray
+    // this.setState({
+    //   cars: carsNewArrayModified
+    // })
+    this.setState({
+      cars: carsNewArray
+    })
+  }
+
   render() {
     let cars = null
 
@@ -52,7 +79,9 @@ class App extends Component {
             key={index}
             name={car.name}
             year={car.year}
-            onChangeTitlePage={() => this.changeTitleHandler(car.name)}
+            // onChangeTitlePage={() => this.changeTitleHandler(car.name)}
+            onChangeName={(event) => this.onChangeName(event.target.value, index)}
+            onDelete={this.deleteHandler.bind(this, index)} //this - текущий контекст.
           />
         )
       })
@@ -65,13 +94,14 @@ class App extends Component {
         <input type="text" onChange={this.handleInput}></input>
         <br/>
 
-        <button
+        <button className="button"
           onClick={this.changeTitleHandler.bind(this, "Нажата кнопка 'Изменить заголовок'")}
         >Изменить заголовок</button>
         <br/>
-        <button
+        <button className="button"
           onClick={this.toggleCarsHandler}
-        >Переключить машины</button>
+        >Показать/скрыть машины</button>
+        <p>_______</p>
 
         { cars }
 
