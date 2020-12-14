@@ -4,15 +4,30 @@ import Car from './Car/Car'
 
 class App extends Component {
 
-  state = {
-    cars: [
-      {name: 'Ford', year: 2018},
-      {name: 'Audi', year: 2016},
-      {name: 'Mazda', year: 2010}
-    ],
-    pageTitle: 'React components',
-    showCars: true
-  }
+  constructor(props) {
+    // constructor() {} - вызывается первым при создании реакт компонентов.
+    console.log("constructor() {}")
+    super(props)
+    this.state = {
+      cars: [
+        {name: 'Ford', year: 2018},
+        {name: 'Audi', year: 2016},
+        {name: 'Mazda', year: 2010}
+      ],
+      pageTitle: 'React components',
+      showCars: true
+    }
+}
+
+  // state = {
+  //   cars: [
+  //     {name: 'Ford', year: 2018},
+  //     {name: 'Audi', year: 2016},
+  //     {name: 'Mazda', year: 2010}
+  //   ],
+  //   pageTitle: 'React components',
+  //   showCars: true
+  // }
 
   changeTitleHandler = (newTitle) => {
 
@@ -43,7 +58,7 @@ class App extends Component {
   }
 
   onChangeName(inputText, index) {
-    console.log(inputText, index)
+    // console.log(inputText, index)
     const carNew = this.state.cars[index] // по индексу нашли строку с машиной, с которой работаем, сохранили в переменную carNew.
     // console.log(carNew, index)
     carNew.name = inputText // присвоили полю name, то значение, которое ввели руками в поле ввода.
@@ -69,7 +84,21 @@ class App extends Component {
     })
   }
 
+  //Базовые жизненные циклы ReactJS
+  // componentWillMount() {} - устарел.
+  // render() {} - вызывается вторым. Перезапускается каждый раз, когда меняется state.
+  // componentDidMount() {} - Вызывается третьим.
+  
+  // componentWillMount() {
+  //   console.log("Приложение componentWillMount() {}")
+  // }
+
+  componentDidMount() {
+    console.log("Приложение componentDidMount() {}")
+  }
+
   render() {
+    console.log("render() {}")
     let cars = null
 
     if (this.state.showCars) {
