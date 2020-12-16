@@ -7,6 +7,12 @@
     border-radius: 10px;
 }
 
+.borderCar:hover {
+    border: 1px solid #aaa;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
 /* .input {
 
 } */

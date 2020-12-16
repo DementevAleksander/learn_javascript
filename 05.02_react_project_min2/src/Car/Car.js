@@ -4,6 +4,8 @@ import './Car.css';
 //Создание statefull компонента. Необходимо, чтобы во вновь созданных компонентах можно было использовать жизненные циклы ReactJS.
 class Car extends React.Component {
 
+  // -------------------------------    Жизненные циклы компонента ------------------------- //
+
   // Жизненные циклы компонента. Порядо вызова
   // shouldComponentUpdate() {}
   // render() {}
@@ -31,9 +33,16 @@ class Car extends React.Component {
     console.log("componentWillUnmount() {} из car.js")
   } //Жизненный цикл удаления. Вызывается после того, как компонент был удалён из DOM-дерева.
 
+  // -------------------------------------------------------------------------------------------------- //
+  
   render() {
     // Если shouldComponentUpdate() {} не отрисовывет изменённый компонент, то render() {} Не вызывается.
     console.log("render() {} из car.js")
+
+    // if (Math.random() > 0.7) {
+    //   throw new Error('Ошибка в App.js где-то в render()!')
+    // } //Генерация рандомной ошибки.
+
     const inputClasses = ['input']
 
     if (this.props.name !== '') {

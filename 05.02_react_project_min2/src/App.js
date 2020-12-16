@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Car from './Car/Car'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+import Counter from './Counter/Counter'
 
 class App extends Component {
 
@@ -99,19 +101,21 @@ class App extends Component {
 
   render() {
     console.log("render() {}")
+
     let cars = null
 
     if (this.state.showCars) {
       cars = this.state.cars.map((car, index) => {
         return (
-          <Car
-            key={index}
-            name={car.name}
-            year={car.year}
-            // onChangeTitlePage={() => this.changeTitleHandler(car.name)}
-            onChangeName={(event) => this.onChangeName(event.target.value, index)}
-            onDelete={this.deleteHandler.bind(this, index)} //this - текущий контекст.
-          />
+          <ErrorBoundary key={index}>
+            <Car
+              name={car.name}
+              year={car.year}
+              // onChangeTitlePage={() => this.changeTitleHandler(car.name)}
+              onChangeName={(event) => this.onChangeName(event.target.value, index)}
+              onDelete={this.deleteHandler.bind(this, index)} //this - текущий контекст.
+            />
+          </ErrorBoundary>
         )
       })
     }
@@ -119,6 +123,9 @@ class App extends Component {
     return (
       <div className="divStyle">
         <h1>{this.state.pageTitle}</h1>
+
+        <Counter/>
+        <br/>
 
         <input type="text" onChange={this.handleInput}></input>
         <br/>
