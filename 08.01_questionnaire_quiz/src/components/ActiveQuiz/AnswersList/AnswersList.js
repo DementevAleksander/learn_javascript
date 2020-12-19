@@ -10,6 +10,7 @@ const AnswersList = props => (
                     key={index}
                     answerFromAnswerList={answer}
                     onAswerClickFromAnswerList={props.onAswerClickFromActiveQuiz}
+                    stateClickFromAnswerList={props.stateClickFromActiveQuiz ? props.stateClickFromActiveQuiz[answer.id] : null}
                 />
             )
         }) }
