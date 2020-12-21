@@ -11,3 +11,16 @@
   width: 180px;
   background-color: rgb(173, 230, 230);
 }
+
+.nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+}
+
+.nav ul li {
+  margin-right: 15px;
+}

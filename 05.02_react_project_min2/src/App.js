@@ -3,6 +3,7 @@ import './App.css';
 import Car from './Car/Car'
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 import Counter from './Counter/Counter'
+import About from './About/About'
 
 class App extends Component {
 
@@ -122,6 +123,21 @@ class App extends Component {
 
     return (
       <div className="divStyle">
+
+        <nav className="nav">
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/about">About</a>
+            </li>
+          </ul>
+        </nav>
+        
+        <hr/>
+        <About />
+
         <h1>{this.state.pageTitle}</h1>
 
         <Counter/>
