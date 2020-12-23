@@ -4,6 +4,7 @@ import Car from './Car/Car'
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 import Counter from './Counter/Counter'
 import About from './About/About'
+import {Route} from 'react-router-dom'
 
 class App extends Component {
 
@@ -136,6 +137,9 @@ class App extends Component {
         </nav>
         
         <hr/>
+        <Route path="/" exact render={() => <h1>Домашняя страница</h1>} /> 
+
+
         <About />
 
         <h1>{this.state.pageTitle}</h1>
