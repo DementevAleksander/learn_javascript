@@ -25,6 +25,7 @@ export default class Counter extends Component {
                 <h2>Счёт: {this.state.counter}</h2>
                 <button onClick={this.addCounter}>+</button>
                 <button onClick={() => this.setState({counter: this.state.counter - 1})}>-</button>
+                <hr/>
             </div>
         )
     }

@@ -4,7 +4,7 @@ import Car from './Car/Car'
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 import Counter from './Counter/Counter'
 import About from './About/About'
-import {Route} from 'react-router-dom'
+import {Route, NavLink} from 'react-router-dom'
 
 class App extends Component {
 
@@ -19,7 +19,7 @@ class App extends Component {
         {name: 'Mazda', year: 2010}
       ],
       pageTitle: 'React components',
-      showCars: true
+      showCars: false
     }
 }
 
@@ -128,23 +128,51 @@ class App extends Component {
         <nav className="nav">
           <ul>
             <li>
-              <a href="/">Home</a>
+              <NavLink
+                exact
+                activeClassName={'wfm-active'}
+                to="/"
+              >Каталог машин</NavLink>
             </li>
             <li>
-              <a href="/about">About</a>
+              <NavLink
+                to="/about"
+                activeStyle={{
+                  color: 'green'
+                }}
+              >О нас</NavLink>
             </li>
+            <li>
+              <NavLink
+                to={{
+                  pathname: '/counter',
+                  search: '?a=1&b=2',
+                  hash: 'wfm-hash'
+                }}
+                
+              >Счётчик</NavLink>
+            </li>
+            {/* <li>
+              <a href="/car">Каталог машин</a>
+            </li> */}
           </ul>
         </nav>
         
         <hr/>
-        <Route path="/" exact render={() => <h1>Домашняя страница</h1>} /> 
+        <Route path="/" exact render={() =>
+          {
+            return (
+            <div>
+              <h1>Каталог машин</h1>
+              <hr/>
+            </div>
+          )}} />
+        <Route path="/about" component={About} />
+        <Route path="/counter" component={Counter} />
+        {/* <Route path="/car" component={Car} /> */}
 
-
-        <About />
 
         <h1>{this.state.pageTitle}</h1>
-
-        <Counter/>
         <br/>
 
         <input type="text" onChange={this.handleInput}></input>

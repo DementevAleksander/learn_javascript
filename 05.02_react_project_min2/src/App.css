@@ -24,3 +24,8 @@
 .nav ul li {
   margin-right: 15px;
 }
+
+.nav a.active, a.wfm-active {
+  font-weight: bold;
+  color: red;
+}
