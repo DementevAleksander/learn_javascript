@@ -4,7 +4,7 @@ import Car from './Car/Car'
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 import Counter from './Counter/Counter'
 import About from './About/About'
-import {Route, NavLink} from 'react-router-dom'
+import {Route, NavLink, Switch} from 'react-router-dom'
 
 class App extends Component {
 
@@ -19,9 +19,10 @@ class App extends Component {
         {name: 'Mazda', year: 2010}
       ],
       pageTitle: 'React components',
-      showCars: false
+      showCars: false,
+      isLoggedIn: false
     }
-}
+  }
 
   // state = {
   //   cars: [
@@ -101,6 +102,12 @@ class App extends Component {
     console.log("Приложение componentDidMount() {}")
   }
 
+  goToCounterPage = () => {
+    this.props.history.push({
+      pathname: '/'
+    })
+  }
+
   render() {
     console.log("render() {}")
 
@@ -146,8 +153,8 @@ class App extends Component {
               <NavLink
                 to={{
                   pathname: '/counter',
-                  search: '?a=1&b=2',
-                  hash: 'wfm-hash'
+                  // search: '?a=1&b=2',
+                  // hash: 'wfm-hash'
                 }}
                 
               >Счётчик</NavLink>
@@ -157,23 +164,40 @@ class App extends Component {
             </li> */}
           </ul>
         </nav>
+
+        <h3>Значение state isLoggedIn: {this.state.isLoggedIn ? 'TRUE' : 'FALSE' }</h3>
+        <button
+          onClick={() => this.setState({isLoggedIn: true})}
+        >Войти</button>
         
         <hr/>
-        <Route path="/" exact render={() =>
-          {
-            return (
-            <div>
-              <h1>Каталог машин</h1>
-              <hr/>
-            </div>
-          )}} />
-        <Route path="/about" component={About} />
-        <Route path="/counter" component={Counter} />
-        {/* <Route path="/car" component={Car} /> */}
+
+        <Switch>
+          <Route path="/" exact render={() =>
+            {
+              return (
+              <div>
+                <h1>Каталог машин</h1>
+                <hr/>
+              </div>
+            )}} />
+
+          <Route path="/about" component={About} />
+
+          { this.state.isLoggedIn ? <Route path="/counter" component={Counter}/> : null }
+
+          {/* <Route path="/car" component={Car} /> */}
+        </Switch>
 
 
         <h1>{this.state.pageTitle}</h1>
         <br/>
+
+        {/* <button
+          className="button"
+          onClick={this.goToCounterPage}
+        >Посмотреть счётчик</button>
+        <br/> */}
 
         <input type="text" onChange={this.handleInput}></input>
         <br/>
