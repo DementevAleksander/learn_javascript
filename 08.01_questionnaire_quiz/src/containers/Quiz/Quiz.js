@@ -97,6 +97,10 @@ class Quiz extends React.Component {
         })
     }
 
+    componentDidMount() {
+        console.log('Quiz ID =', this.props.match.params.id)
+    }
+
     render() {
         // console.log('Номер вопроса:', this.state.activeQuestion + 1, 'из', this.state.quiz.length)
         return (
