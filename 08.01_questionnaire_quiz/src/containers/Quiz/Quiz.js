@@ -2,6 +2,8 @@ import React from 'react'
 import classes from './Quiz.module.css'
 import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz'
 import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
+import axios from '../../axios/axios-quiz';
+import Loader from '../../components/UI/Loader/Loader';
 
 //Блок с вопросами.
 class Quiz extends React.Component {
@@ -11,30 +13,8 @@ class Quiz extends React.Component {
         isFinished: false,
         activeQuestion: 0,
         answerState: null, //Текущий клик пользователя, правильный львет или не правильный.
-        quiz: [
-            {
-                id: 1,
-                question: 'Какого цвета небо?',
-                answers: [
-                    {text: 'Голубой', id: 1},
-                    {text: 'Фиолетовый', id: 2},
-                    {text: 'Зелёный', id: 3},
-                    {text: 'Жёлтый', id: 4}
-                ],
-                rightAnswerId: 1
-            },
-            {
-                id: 2,
-                question: 'Сколько километров от Москвы до Смоленска?',
-                answers: [
-                    {text: '1000', id: 1},
-                    {text: '380', id: 2},
-                    {text: '9000', id: 3},
-                    {text: '8000', id: 4}
-                ],
-                rightAnswerId: 2
-            }
-        ]
+        quiz: [],
+        loading: true
     }
 
     onAnswerClickHandler = (answerId) => {
@@ -97,7 +77,20 @@ class Quiz extends React.Component {
         })
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+
+        try {
+            const response = await axios.get(`/quizes/${this.props.match.params.id}.json`)
+            const quiz = response.data
+
+            this.setState({
+                quiz,
+                loading: false
+            })
+        } catch (e) {
+
+        }
+
         console.log('Quiz ID =', this.props.match.params.id)
     }
 
@@ -109,20 +102,23 @@ class Quiz extends React.Component {
                     <h1>Выберите один из вариантов ответа</h1>
 
                     {
-                        this.state.isFinished
-                        ? <FinishedQuiz
-                            resultsFromQuiz={this.state.results}
-                            quizFromQuiz={this.state.quiz}
-                            onRetry={this.retryHandler}
-                        />
-                        : <ActiveQuiz
-                            answerFromQuiz={this.state.quiz[this.state.activeQuestion].answers} // Ответ
-                            questionFromQuiz={this.state.quiz[this.state.activeQuestion].question} // Вопрос
-                            onAswerClickFromQuiz={this.onAnswerClickHandler} // Обработчик нажатия на ответ
-                            quizLengthFromQuiz={this.state.quiz.length} // Длина массива с вопросами
-                            answerNumberFromQuiz={this.state.activeQuestion + 1} // Номер вопроса
-                            stateClickFromQuiz={this.state.answerState} // Проверка на правильность ответа
-                        />
+                        this.state.loading
+                        ? <Loader />
+                        : this.state.isFinished
+                            ? <FinishedQuiz
+                                resultsFromQuiz={this.state.results}
+                                quizFromQuiz={this.state.quiz}
+                                onRetry={this.retryHandler}
+                              />
+                            : <ActiveQuiz
+                                answerFromQuiz={this.state.quiz[this.state.activeQuestion].answers} // Ответ
+                                questionFromQuiz={this.state.quiz[this.state.activeQuestion].question} // Вопрос
+                                onAswerClickFromQuiz={this.onAnswerClickHandler} // Обработчик нажатия на ответ
+                                quizLengthFromQuiz={this.state.quiz.length} // Длина массива с вопросами
+                                answerNumberFromQuiz={this.state.activeQuestion + 1} // Номер вопроса
+                                stateClickFromQuiz={this.state.answerState} // Проверка на правильность ответа
+                            />
+
                     }
                 </div>
             </div>

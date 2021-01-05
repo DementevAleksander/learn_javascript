@@ -38,3 +38,4 @@ yarn-error.log*
 07.01_fullstack_crmsystem/config/
 08.01_questionnaire_quiz/.eslintcache
 08.01_questionnaire_quiz/.gitignore
+08.01_questionnaire_quiz/src/axios/
