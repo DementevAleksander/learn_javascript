@@ -39,3 +39,4 @@ yarn-error.log*
 08.01_questionnaire_quiz/.eslintcache
 08.01_questionnaire_quiz/.gitignore
 08.01_questionnaire_quiz/src/axios/
+05.03_react_project_min3_learnredux/.gitignore
