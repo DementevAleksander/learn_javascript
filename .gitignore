@@ -40,3 +40,10 @@ yarn-error.log*
 08.01_questionnaire_quiz/.gitignore
 08.01_questionnaire_quiz/src/axios/
 05.03_react_project_min3_learnredux/.gitignore
+08.02_questionnaire_quiz_redux/.eslintcache
+08.02_questionnaire_quiz_redux/.gitignore
+08.02_questionnaire_quiz_redux/debug.log
+08.02_questionnaire_quiz_redux/src/containers/Auth/
+08.02_questionnaire_quiz_redux/.firebaserc
+08.02_questionnaire_quiz_redux/firebase.json
+08.02_questionnaire_quiz_redux/.firebase/
