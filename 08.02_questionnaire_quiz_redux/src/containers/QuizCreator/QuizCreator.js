@@ -20,9 +20,12 @@ function createOptionControl(number) {
 function createFormControls() {
     return {
         question: createControl({
-        label: 'Введите вопрос',
-        errorMessage: 'Вопрос не может быть пустым'
-        }, {required: true}),
+            label: 'Введите вопрос',
+            errorMessage: 'Вопрос не может быть пустым'
+        },
+        {
+            required: true
+        }),
         option1: createOptionControl(1),
         option2: createOptionControl(2),
         option3: createOptionControl(3),
@@ -143,6 +146,9 @@ class QuizCreator extends Component {
 
                     <form onSubmit={this.submitHandler}>
 
+                        <Input
+                            label={'Введите название теста'}
+                        />
                         { this.renderControls() }
 
                         { select }
