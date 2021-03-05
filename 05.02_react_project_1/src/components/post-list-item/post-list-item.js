@@ -19,7 +19,7 @@ export default class PostListItem extends Component {
             <div className={classNames}>
                 <span 
                 className="app-list-item-label"
-                onClick={onToggleLiked}>
+                onClick={onToggleImportant}>
                     {label}
                 </span>
                 <div className="d-flex justify-content-center align-items-center">
@@ -35,7 +35,10 @@ export default class PostListItem extends Component {
                     onClick={onDelete}>
                         <i className="fa fa-trash-o"></i>
                     </button>
-                    <i className="fa fa-heart"></i>
+                    <i
+                        className="fa fa-heart"
+                        onClick={onToggleLiked}
+                    ></i>
                 </div>
             </div>
         )

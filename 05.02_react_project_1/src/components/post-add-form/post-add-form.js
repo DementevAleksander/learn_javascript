@@ -18,6 +18,17 @@ export default class PostAddForm extends Component {
     onSubmit(e) {
         e.preventDefault();
         this.props.onAdd(this.state.text);
+        // localStorage.setItem('datalistnotes', JSON.stringify(this.state.text))
+
+        // const datalistnotesAdd = JSON.parse(localStorage.getItem('datalistnotes'))
+
+        //     datalistnotesAdd.push({
+        //     text: todoEl.innerText,
+        //     completed: todoEl.classList.contains('completed')
+        //   })
+      
+        // localStorage.setItem('todos', JSON.stringify(todos))
+
         this.setState({
             text: ''
         });

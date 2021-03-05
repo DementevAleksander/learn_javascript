@@ -15,7 +15,7 @@ export default class App extends Component { //Компонент с прило�
         this.state = {
             data : [
                 {label: "Прошлое забыто, будущее закрыто, настоящее даровано", important: true, id: 1},
-                {label: "Там, где есть руины, есть надежда на сокровища", important: false, id: 2},
+                {label: "Там, где есть руины, есть надежда на сокровища", important: false, like: true, id: 2},
                 {label: "У тихих людей самые громкие мысли", important: false, id: 3},
                 {label: "Примите неопределенность. Когда ничего не ясно, все возможно", important: false, id: 4}
             ],
@@ -112,12 +112,19 @@ export default class App extends Component { //Компонент с прило�
         this.setState({filter})
     }
 
+    
+
     render() {
         const {data, term, filter} = this.state;
+        const datalistnotes = JSON.parse(localStorage.getItem('datalistnotes'))
+        if(!datalistnotes) {
+            localStorage.setItem('datalistnotes', JSON.stringify(data))
+        }
 
-        const liked = data.filter((item) => item.like).length;
-        const allPosts = data.length;
-        const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
+        const liked = datalistnotes.filter((item) => item.like).length;
+        const allPosts = datalistnotes.length;
+        const visiblePosts = this.filterPost(this.searchPost(datalistnotes, term), filter);
+
         return (
             <div className="app">
                 <AppHeader liked={liked} allPosts={allPosts}/>
@@ -129,10 +136,11 @@ export default class App extends Component { //Компонент с прило�
                         onFilterSelect={this.onFilterSelect}/>
                 </div>
                 <PostList 
-                posts={visiblePosts}
-                onDelete={this.deleteItem}
-                onToggleImportant={this.onToggleImportant}
-                onToggleLiked={this.onToggleLiked}/>
+                    posts={visiblePosts}
+                    onDelete={this.deletedItem}
+                    onToggleImportant={this.onToggleImportant}
+                    onToggleLiked={this.onToggleLiked}
+                />
                 <PostAddForm
                 onAdd={this.addItem}/>
                 {/* <WhoAmIAll/> */}

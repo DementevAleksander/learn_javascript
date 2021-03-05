@@ -7,3 +7,15 @@
   flex-grow: 1;
   margin-right: 3px;
 }
+
+@media (max-width: 425px) {
+  .d-flex {
+    display: block !important;
+    /* margin-top: 10px; */
+  }
+
+  .btn-group {
+    margin-top: 10px;
+  }
+}
+

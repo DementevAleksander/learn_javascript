@@ -4,7 +4,7 @@ import './app-header.css';
 const AppHeader = ({liked, allPosts}) => {
     return (
         <div className="app-header d-flex">
-            <h1>Дементьев Александр!</h1>
+            <h1>Мои заметки!</h1>
             <h2>{allPosts} записей, из них понравилось {liked}</h2>
         </div>
     )
