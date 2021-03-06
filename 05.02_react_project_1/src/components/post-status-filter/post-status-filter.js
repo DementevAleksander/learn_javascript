@@ -16,11 +16,19 @@ export default class PostStatusFilter extends Component {
            const active = filter === name;
            const clazz = active ? 'btn-info' : 'btn-outline-secondary'
            return (
-               <button type='button'
+                <button type='button'
                     className={`btn ${clazz}`}
-                   key={name}
-                   onClick={() => onFilterSelect(name)}>
-                   {label}</button>
+                    key={name}
+                    onClick={() => onFilterSelect(name)}>
+                    {label}
+                </button>
+
+                // <button 
+                // type="button" 
+                // className="btn-star btn-sm"
+                // onClick={onToggleImportant}>
+                //     <i className="fa fa-star"></i>
+                // </button>
            )
        });
 

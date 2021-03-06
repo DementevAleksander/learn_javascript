@@ -20,7 +20,8 @@ export default class App extends Component { //Компонент с прило�
                 {label: "Примите неопределенность. Когда ничего не ясно, все возможно", important: false, id: 4}
             ],
             term: '',
-            filter: 'all'
+            filter: 'all',
+            dataLocalstorage: false
         };
         this.deletedItem = this.deletedItem.bind(this);
         this.addItem = this.addItem.bind(this);
@@ -37,6 +38,8 @@ export default class App extends Component { //Компонент с прило�
             const before = data.slice(0, index);
             const after = data.slice(index + 1);
             const newArr = [...before, ...after];
+            localStorage.setItem('datalistnotes', JSON.stringify(newArr))
+
             return {
                 data: newArr
             }
@@ -52,6 +55,7 @@ export default class App extends Component { //Компонент с прило�
 
         this.setState(({data}) => {
             const newArr = [...data, newItem];
+            localStorage.setItem('datalistnotes', JSON.stringify(newArr))
             return {
                 data: newArr
             }
@@ -66,6 +70,9 @@ export default class App extends Component { //Компонент с прило�
             const newItem = {...old, important: !old.important};
 
             const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
+
+            localStorage.setItem('datalistnotes', JSON.stringify(newArr))
+
             return {
                 data: newArr
             }
@@ -80,6 +87,8 @@ export default class App extends Component { //Компонент с прило�
             const newItem = {...old, like: !old.like};
 
             const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
+
+            localStorage.setItem('datalistnotes', JSON.stringify(newArr))
             return {
                 data: newArr
             }
@@ -112,39 +121,59 @@ export default class App extends Component { //Компонент с прило�
         this.setState({filter})
     }
 
-    
+    async componentDidMount() {
+        const {data} = this.state;
+        const datalistnotes = await JSON.parse(localStorage.getItem('datalistnotes'))
+        if(!datalistnotes) {
+            await localStorage.setItem('datalistnotes', JSON.stringify(data))
+            this.setState({
+                dataLocalstorage: true
+            })
+        } else {
+            this.setState({
+                data: datalistnotes,
+                dataLocalstorage: true
+            })
+        }
+    }
 
     render() {
-        const {data, term, filter} = this.state;
-        const datalistnotes = JSON.parse(localStorage.getItem('datalistnotes'))
-        if(!datalistnotes) {
-            localStorage.setItem('datalistnotes', JSON.stringify(data))
-        }
 
-        const liked = datalistnotes.filter((item) => item.like).length;
-        const allPosts = datalistnotes.length;
-        const visiblePosts = this.filterPost(this.searchPost(datalistnotes, term), filter);
-
-        return (
-            <div className="app">
-                <AppHeader liked={liked} allPosts={allPosts}/>
-                <div className="search-panel d-flex">
-                    <SearchPanel
-                        onUpdateSearch={this.onUpdateSearch}/>
-                    <PostStatusFilter
-                        filter={filter}
-                        onFilterSelect={this.onFilterSelect}/>
+        if (!this.state.dataLocalstorage) {
+            return (
+                <div>
+                    <h1>Идёт загрузка...</h1>
                 </div>
-                <PostList 
-                    posts={visiblePosts}
-                    onDelete={this.deletedItem}
-                    onToggleImportant={this.onToggleImportant}
-                    onToggleLiked={this.onToggleLiked}
-                />
-                <PostAddForm
-                onAdd={this.addItem}/>
-                {/* <WhoAmIAll/> */}
-            </div>
-        )
+            )
+        } else {
+            const {data, term, filter} = this.state;
+            // const datalistnotes = JSON.parse(localStorage.getItem('datalistnotes'))
+            const liked = data.filter((item) => item.like).length;
+            const allPosts = data.length;
+            const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
+
+            return (
+                <div className="app">
+                    <AppHeader liked={liked} allPosts={allPosts}/>
+                    <div className="search-panel d-flex">
+                        <SearchPanel
+                            onUpdateSearch={this.onUpdateSearch}/>
+                        <PostStatusFilter
+                            filter={filter}
+                            onFilterSelect={this.onFilterSelect}/>
+                    </div>
+                    <PostList 
+                        posts={visiblePosts}
+                        onDelete={this.deletedItem}
+                        onToggleImportant={this.onToggleImportant}
+                        onToggleLiked={this.onToggleLiked}
+                    />
+                    <PostAddForm
+                        onAdd={this.addItem}
+                    />
+                    {/* <WhoAmIAll/> */}
+                </div>
+            )  
+        }
     }
 }
