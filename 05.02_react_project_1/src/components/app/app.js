@@ -46,11 +46,23 @@ export default class App extends Component { //Компонент с прило�
         });
     }
 
-    addItem(body) {
+    async addItem(body) {
+
+        const datalistnotes = []
+        
+        await JSON.parse(localStorage.getItem('datalistnotes')).forEach(element => {
+            datalistnotes.push(
+                element.id
+            )
+        });
+        console.log(datalistnotes)
+        console.log(Math.max.apply(null, datalistnotes))
+
         const newItem = {
             label: body,
             important: false,
-            id: this.maxId++
+            // id: this.maxId++,
+            id: (Math.max.apply(null, datalistnotes)) + 1,
         }
 
         this.setState(({data}) => {
@@ -108,6 +120,8 @@ export default class App extends Component { //Компонент с прило�
     filterPost(items, filter) {
         if (filter === 'like') {
             return items.filter(item => item.like)
+        } else if (filter === 'important') {
+            return items.filter(item => item.important)
         } else {
             return items
         }
