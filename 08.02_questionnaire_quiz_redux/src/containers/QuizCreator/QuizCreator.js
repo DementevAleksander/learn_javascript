@@ -16,7 +16,7 @@ function createOptionControl(number) {
       id: number
     }, {required: true})
   }
-  
+
 function createFormControls() {
     return {
         question: createControl({
@@ -38,7 +38,16 @@ class QuizCreator extends Component {
     state = {
         isFormValid: false,
         rightAnswerId: 1,
-        formControls: createFormControls()
+        formControls: createFormControls(),
+        nameQuizTest: createControl({
+            label: 'Введите название теста',
+            errorMessage: 'Название не может быть пустым'
+        },
+        {
+            required: true
+        }),
+        isFinishCreateQuiz: false,
+        lengthNameQuiz: 50
     }
 
     sibmitHandler = event => {
@@ -51,16 +60,19 @@ class QuizCreator extends Component {
         const {question, option1, option2, option3, option4} = this.state.formControls 
     
         const questionItem = { //формируем объект из вопросов, который кладём в state
-          question: question.value,
-          id: this.props.quiz.length + 1,
-          rightAnswerId: this.state.rightAnswerId,
-          answers: [
-            {text: option1.value, id: option1.id},
-            {text: option2.value, id: option2.id},
-            {text: option3.value, id: option3.id},
-            {text: option4.value, id: option4.id}
-          ]
+            nameQuizTest: this.state.nameQuizTest.value,
+            question: question.value,
+            id: this.props.quiz.length + 1,
+            rightAnswerId: this.state.rightAnswerId,
+            answers: [
+                {text: option1.value, id: option1.id},
+                {text: option2.value, id: option2.id},
+                {text: option3.value, id: option3.id},
+                {text: option4.value, id: option4.id}
+            ]
         }
+        
+        console.log(questionItem)
     
         this.props.createQuizQuestion(questionItem)
     
@@ -68,7 +80,7 @@ class QuizCreator extends Component {
             isFormValid: false,
             rightAnswerId: 1,
             formControls: createFormControls()
-          })
+        })
     }
 
     createQuizHandler = (event) => {
@@ -77,9 +89,30 @@ class QuizCreator extends Component {
         this.setState({
             isFormValid: false,
             rightAnswerId: 1,
-            formControls: createFormControls()
+            formControls: createFormControls(),
+            nameQuizTest: '',
+            isFinishCreateQuiz: true
         })
         this.props.finishCreateQuiz()
+    }
+
+    changeHandlerNameTest = (value) => {
+
+        let nameQuiz = { ...this.state.nameQuizTest }
+        const control = { ...nameQuiz }
+    
+        control.touched = true
+        control.value = value
+        control.valid = validate(control.value, control.validation)
+    
+        nameQuiz = control
+
+
+
+        this.setState({
+            nameQuizTest: nameQuiz,
+            lengthNameQuiz: 50 - control.value.length
+        })
     }
 
     changeHandler = (value, controlName) => {
@@ -139,46 +172,73 @@ class QuizCreator extends Component {
             ]}
         />
 
-        return (
-            <div className={classes.QuizCreator}>
-                <div>
-                    <h1>Создание теста</h1>
+        if (this.props.isAuthenticated) {
+            return (
+                <div className={classes.QuizCreator}>
+                    <div>
+                        <h1>Создание теста</h1>
 
-                    <form onSubmit={this.submitHandler}>
+                        {
+                            this.state.isFinishCreateQuiz
+                            ? <h1>Тест создан и отображается в общем списке тестов. Спасибо за участие!</h1>
+                            :
+                            <form onSubmit={this.submitHandler}>
 
-                        <Input
-                            label={'Введите название теста'}
-                        />
-                        { this.renderControls() }
+                                <Input
+                                    label={`Введите название теста (не более ${this.state.lengthNameQuiz} символов)`}
+                                    // value={this.state.nameQuizTest.value}
+                                    valid={this.state.nameQuizTest.valid}
+                                    shouldValidate={!!this.state.nameQuizTest.validation} //!! - приводим к булеан типу true или false.
+                                    touched={this.state.nameQuizTest.touched}
+                                    errorMessage={this.state.nameQuizTest.errorMessage}
+                                    maxLength={50}
+                                    onChange={event => this.changeHandlerNameTest(event.target.value)}
+                                    disabled={this.props.quiz.length > 0}
+                                />
 
-                        { select }
+                                { this.renderControls() }
 
-                        <Button
-                            type="primary"
-                            onClick={this.addQuestionHandler}
-                            disabled={!this.state.isFormValid}
-                        >
-                            Добавить вопрос
-                        </Button>
+                                { select }
 
-                        <Button
-                            type="success"
-                            onClick={this.createQuizHandler}
-                            disabled={this.props.quiz.length === 0}
-                        >
-                            Создать тест
-                        </Button>
+                                <Button
+                                    type="primary"
+                                    onClick={this.addQuestionHandler}
+                                    disabled={!this.state.isFormValid}
+                                >
+                                    Добавить вопрос
+                                </Button>
 
-                    </form>
+                                <Button
+                                    type="success"
+                                    onClick={this.createQuizHandler}
+                                    disabled={this.props.quiz.length === 0}
+                                >
+                                    Создать тест
+                                </Button>
+
+                            </form>
+                        }
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div className={classes.QuizCreator}>
+                    <div>
+                        <h1>Создание теста</h1>
+
+                        <h2>Только зарегистрированные пользователи могут создавать тесты. Перейдите на страницу авторизации и зайдите в систему, используя логин и пароль, введённые при регистрации!</h2>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
 function mapStateToProps(state) {
     return {
-      quiz: state.create.quiz
+      quiz: state.create.quiz,
+      isAuthenticated: !!state.auth.token
     }
 }
 

@@ -4,7 +4,7 @@
     padding-top: 50px;
     flex-grow: 1;
     width: 100%;
-    background: linear-gradient(270deg, #f0613c 0%, #f0783c 100%);
+    background: linear-gradient(270deg, #145316 0%, #357a14 100%);
 }
 
 .QuizCreator > div {
@@ -15,6 +15,12 @@
 
 .QuizCreator h1 {
     text-align: center;
+    color: white;
+}
+
+.QuizCreator h2 {
+    text-align: left;
+    color: white;
 }
 
 .QuizCreator form {

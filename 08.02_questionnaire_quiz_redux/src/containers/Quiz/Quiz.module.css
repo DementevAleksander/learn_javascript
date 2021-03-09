@@ -5,6 +5,7 @@
     flex-grow: 1;
     width: 100%;
     background: linear-gradient(90deg, #5041b2 0%, #7969e6 100%);
+    background: url('../../img/planet.jpg') 75% 100%/cover no-repeat;
 }
 
 .Quiz h1 {

@@ -4,11 +4,13 @@
     padding-top: 100px;
     flex-grow: 1;
     width: 100%;
-    background: linear-gradient(90deg, #fd8355 0%, #f0576c 37%, #f79cbd 100%);
+    background: linear-gradient(90deg, #fd8355 0%, #e2f109 37%, #fd8355 100%);
+    background: url('../../img/planet.jpg') 75% 100%/cover no-repeat;
 }
 
 .QuizList h1 {
     color: #ffffff;
+    font-size: 45px;
 }
 
 .QuizList ul {
@@ -27,5 +29,5 @@
 }
 
 .QuizList li a:hover {
-    color: #363f54;
+    color: #11acc7;
 }
