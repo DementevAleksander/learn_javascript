@@ -72,7 +72,7 @@ class QuizCreator extends Component {
             ]
         }
         
-        console.log(questionItem)
+        // console.log(questionItem)
     
         this.props.createQuizQuestion(questionItem)
     

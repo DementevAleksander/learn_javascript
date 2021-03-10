@@ -13,14 +13,35 @@ export function fetchQuizes() {
     try {
       const response = await axios.get('/quizes.json')
 
+      const quizesMassive = []
+
+      for (let key in response.data) {
+        if (typeof(response.data[key]) === 'object') {
+          quizesMassive.push({
+            id: key,
+            quizObject: response.data[key]
+          })
+        }
+      }
+
       const quizes = []
 
-      Object.keys(response.data).forEach((key, index) => {
+      quizesMassive.map((quizesData, index) => (
         quizes.push({
-          id: key,
-          name: `Тест №${index + 1}`
+          id: quizesData.id,
+          name: `Тест №${index + 1}`,
+          nameDescription: quizesData.quizObject[0].nameQuizTest,
+          lengthQuiz: quizesData.quizObject.length
         })
-      })
+      ))
+
+      // Object.keys(response.data).forEach((key, index) => {
+      //   quizes.push({
+      //     id: key,
+      //     name: `Тест №${index + 1}`,
+      //     // nameDescription: aaaaa
+      //   })
+      // })
 
       dispatch(fetchQuizesSuccess(quizes))
     } catch (e) {

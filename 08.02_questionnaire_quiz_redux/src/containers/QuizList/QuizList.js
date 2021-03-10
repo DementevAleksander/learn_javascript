@@ -10,12 +10,13 @@ class QuizList extends Component {
 
     renderQuizez() {
         return this.props.quizes.map((quiz) => {
+            // console.log(quiz)
             return (
                 <li
                     key={quiz.id}
                 >
                     <NavLink to={'/quiz/' + quiz.id}>
-                        {quiz.name}
+                        {quiz.name} : <span>"{quiz.nameDescription}"</span>. Колличество вопросов в тесте: <span>{quiz.lengthQuiz}</span>
                     </NavLink>
                 </li>
             )
@@ -24,6 +25,7 @@ class QuizList extends Component {
 
     componentDidMount() {
         this.props.fetchQuizes()
+
         // try {
         //     const response = await axios.get('/quizes.json')
 
@@ -67,7 +69,8 @@ class QuizList extends Component {
 function mapStateToProps(state) {
     return {
       quizes: state.quiz.quizes,
-      loading: state.quiz.loading
+      loading: state.quiz.loading,
+      quiz: state.quiz.quiz,
     }
   }
   

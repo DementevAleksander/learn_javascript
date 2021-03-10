@@ -4,13 +4,19 @@
     padding-top: 100px;
     flex-grow: 1;
     width: 100%;
-    background: linear-gradient(90deg, #fd8355 0%, #e2f109 37%, #fd8355 100%);
+    /* background: linear-gradient(90deg, #426e25 0%, #348a0c 37%, #0d460b 100%); */
     background: url('../../img/planet.jpg') 75% 100%/cover no-repeat;
+    /* background: url('../../img/planet.jpg');
+    background-size: 100%; */
+    /* padding: 80px 20px 5px 20px; */
+    min-height: 500px;
 }
 
 .QuizList h1 {
     color: #ffffff;
     font-size: 45px;
+    margin: 5px;
+    margin-bottom: 35px;
 }
 
 .QuizList ul {
@@ -20,14 +26,22 @@
 }
 
 .QuizList li {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    margin: 5px;
 }
 
 .QuizList li a {
     text-decoration: none;
     color: #ffffff;
+    font-size: 20px;
 }
 
 .QuizList li a:hover {
     color: #11acc7;
+}
+
+.QuizList span {
+    color: #ffffff;
+    font-weight: bold;
+    /* font-size: 45px; */
 }
