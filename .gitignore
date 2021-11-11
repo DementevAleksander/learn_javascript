@@ -51,3 +51,10 @@ yarn-error.log*
 05.02_react_project_min2/.eslintcache
 09.01_githubapi_reacthooks/.eslintcache
 09.01_githubapi_reacthooks/.gitignore
+10.01_dependent_dropdown_list_reactjs/node_modules/
+10.01_dependent_dropdown_list_reactjs/dist/
+10.01_dependent_dropdown_list_reactjs/.cache/
+01.2_reiteration/
+10.05_Отложенная загрузка ReactJS/node_modules/
+10.03_Object/
+10.05_Отложенная загрузка ReactJS/
